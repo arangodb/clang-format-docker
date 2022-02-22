@@ -7,7 +7,8 @@ changed_filenames_file="$2"
 # temporary file for diffs
 temp_file=".clang-format-$$.reformat.tmp"
 # clean up after ourselves
-trap "rm -f $temp_file" EXIT SIGINT SIGTERM SIGHUP
+trap "rm -f $temp_file" EXIT
+trap "rm -f $temp_file; exit" SIGINT SIGTERM SIGHUP
 
 # output version info
 clang-format --version
